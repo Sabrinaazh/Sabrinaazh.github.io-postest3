@@ -1,4 +1,4 @@
-alert("SELAMAT DATANG")
+// alert("SELAMAT DATANG")
 function check()
     {
         let cb = document.getElementById('cb').checked;

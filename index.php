@@ -13,8 +13,10 @@
         
 
         <ul class="navi">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="aboutme.html">ABOUT ME</a></li>
+            <li><a href="index.php">HOME</a></li>
+            <li><a href="aboutme.php">ABOUT ME</a></li>
+            <li><a href="tambah.php">TAMBAH</a></li>
+            <li><a href="daftar.php">DAFTAR SKINCARE</a></li>
             <label class="switch">
                 <input type="checkbox" id="cb" value="true" onchange="check()">
                 <span class="slider round"></span>

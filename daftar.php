@@ -1,4 +1,24 @@
-body
+<?php 
+    require "koneksi.php";
+
+    $result = mysqli_query($conn, "SELECT * FROM merek");
+
+    $merek = [];
+
+    while($row = mysqli_fetch_assoc($result))
+    {
+        $merek[] = $row;
+    }
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        body
 {
     font-family: Arial, Helvetica, sans-serif;
     padding: 0;
@@ -81,7 +101,7 @@ body
 {
     background-color: white;
     color: black;
-    margin-top: 101px;
+    margin-top: 200px;
 }
 
 
@@ -89,7 +109,7 @@ body
 {
     background-color: rgb(53, 53, 53);
     color: white;
-    margin-top: 101px;
+    margin-top: 200px;
 }
 
 .navi
@@ -231,3 +251,100 @@ footer
   {
     margin-top: 500px;
   }
+
+  .merk2
+  {
+    margin-top : 40px;
+    margin-bottom : 40px;
+    width: 400px;
+    height: 630px;
+    border-radius: 10px;
+    margin-left: 500px;
+    background-color: #FAFAFA;
+    padding: 20px;
+    font-size: 26px;
+  }
+
+  .merk2 img
+  {
+    width: 400px;
+    height: 400px;
+  }
+
+  .tombolHapus
+  {
+    width: 100px;
+    height: 40px;
+    background-color: #e60026;
+    border: none;
+  }
+
+  .tombolEdit
+  {
+    border: none;
+    width: 100px;
+    height: 40px;
+    background-color: #ABD5AB;
+  }
+
+  .tombolHapus, .tombolEdit
+  {
+    
+    text-color: white;
+    color: white;
+    border-radius: 8px;
+  }
+
+  
+    </style>
+</head>
+<body>
+    <div class="header" id="kepala">
+        <div class="namaweb">
+            <div class="judul1">soci</div>
+            <div class="judul2">o<i>ll</i>a</div>
+        </div>
+        
+
+        <ul class="navi">
+            <li><a href="index.php">HOME</a></li>
+            <li><a href="aboutme.php">ABOUT ME</a></li>
+            <li><a href="tambah.php">TAMBAH</a></li>
+            <li><a href="daftar.php">DAFTAR SKINCARE</a></li>
+            <label class="switch">
+                <input type="checkbox" id="cb" value="true" onchange="check()">
+                <span class="slider round"></span>
+            </label>
+            
+        </ul>
+
+    </div>
+
+    <div class="konten" id="container">
+        
+    <?php $i = 1; foreach($merek as $mrk): ?>
+        <div class="merk2">
+            
+            <div>
+                <img src="img/<?php echo $mrk["gambar"]; ?>" alt="produk" width="70%">
+                <p><?php echo $mrk["nama_produk"]; ?> <br> 
+                <b><?php echo $mrk['harga']; ?></b><br>
+                <p><?php echo $mrk["alamat"]; ?></p>
+                
+                <a href="hapus.php?id=<?php echo $mrk["id"]; ?>"><button class="tombolHapus">HAPUS</button></a>
+                <a href="update.php?id=<?php echo $mrk["id"]; ?>"><button class="tombolEdit">EDIT</button></a>
+            </div>
+           
+    
+    
+        </div>
+        <?php $i++; endforeach; ?>
+    </div>
+
+
+    <footer>
+        <p class="nama">Sabrina Nur Az-zahra</p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

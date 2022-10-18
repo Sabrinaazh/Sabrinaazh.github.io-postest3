@@ -1,4 +1,45 @@
-body
+<?php
+
+    require "koneksi.php";
+    if(isset($_POST["input"]))
+    {
+        $gambar = $_FILES["gambar"]["name"];
+        $tmp = $_FILES["gambar"]["tmp_name"];
+
+        $nama_produk = $_POST["nama_produk"];
+        $harga = $_POST["harga"];
+        $alamat = $_POST["alamat"];
+
+        move_uploaded_file($tmp, "img/".$gambar);    
+    
+        $sql = "INSERT INTO merek (id, gambar, nama_produk, harga, alamat ) VALUES ('', '$gambar', '$nama_produk', '$harga', '$alamat');";
+        $result = mysqli_query($conn, $sql);
+
+        if($result)
+        {
+            echo
+            "<script>
+            alert('Data Berhasil Dimasukan!');
+            </script>";
+        }
+
+        else
+        {
+            echo
+            "<script>
+            alert('Data gagal Dimasukan!');
+            </script>";
+        }
+    }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        body
 {
     font-family: Arial, Helvetica, sans-serif;
     padding: 0;
@@ -227,7 +268,84 @@ footer
     border-radius: 50%;
   }
 
-  .inputData form
+  .inputData
   {
-    margin-top: 500px;
+    margin-top: 200px;
+    margin-left: 600px;
+    margin-bottom: 200px;
+    padding: 20px;
+    width: 270px;
+    background-color: #FAFAFA;
   }
+
+  .inputData input
+  {
+    width: 250px;
+    height: 30px;
+  }
+
+  .btn
+  {
+    width: 257px;
+    height: 30px;
+    background-color: #F9D1D1;
+  }
+
+  .files
+  {
+    background-color: #FFFFFF;
+  }
+    </style>
+</head>
+<body>
+    <div class="header" id="kepala">
+        <div class="namaweb">
+            <div class="judul1">soci</div>
+            <div class="judul2">o<i>ll</i>a</div>
+        </div>
+        
+
+        <ul class="navi">
+            <li><a href="index.php">HOME</a></li>
+            <li><a href="aboutme.php">ABOUT ME</a></li>
+            <li><a href="tambah.php">TAMBAH</a></li>
+            <li><a href="daftar.php">DAFTAR SKINCARE</a></li>
+            <label class="switch">
+                <input type="checkbox" id="cb" value="true" onchange="check()">
+                <span class="slider round"></span>
+            </label>
+            
+        </ul>
+
+    </div>
+
+    <div class="konten" id="container">
+        
+    <div class="inputData">
+
+        <form action="" method="post" enctype="multipart/form-data">
+
+            <input type="file" name="gambar" id="" class="files">
+            <br>
+            <p>Nama Produk</p>
+            <input type="text" name="nama_produk" id="" placeholder="masukan nama skincare...">
+            <br>
+            <p>Harga</p>
+            <input type="text" name="harga" id="" placeholder="masukan harga...">
+            <br>
+            <p>Alamat</p>
+            <input type="text" name="alamat" id="" placeholder="masukan alamat...">
+            <br> <br>
+            <button class="btn" name="input" type="submit">input</button>
+
+        </form>
+
+    </div>
+
+
+    <footer>
+        <p class="nama">Sabrina Nur Az-zahra</p>
+    </footer>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>
