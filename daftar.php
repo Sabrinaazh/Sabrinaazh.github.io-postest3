@@ -259,10 +259,18 @@ footer
     width: 400px;
     height: 630px;
     border-radius: 10px;
-    margin-left: 500px;
+    margin-left: 150px;
     background-color: #FAFAFA;
     padding: 20px;
     font-size: 26px;
+     
+
+  }
+
+  .pf
+  {
+    font-size: 12px;
+    text-align: center;
   }
 
   .merk2 img
@@ -293,6 +301,12 @@ footer
     text-color: white;
     color: white;
     border-radius: 8px;
+  }
+
+  .konten
+  {
+    display: flex;
+    flex-wrap : wrap;
   }
 
   
@@ -328,11 +342,12 @@ footer
             <div>
                 <img src="img/<?php echo $mrk["gambar"]; ?>" alt="produk" width="70%">
                 <p><?php echo $mrk["nama_produk"]; ?> <br> 
-                <b><?php echo $mrk['harga']; ?></b><br>
+                <b><?php echo "Rp. ".$mrk['harga']; ?></b><br>
                 <p><?php echo $mrk["alamat"]; ?></p>
                 
                 <a href="hapus.php?id=<?php echo $mrk["id"]; ?>"><button class="tombolHapus">HAPUS</button></a>
                 <a href="update.php?id=<?php echo $mrk["id"]; ?>"><button class="tombolEdit">EDIT</button></a>
+                <p class="pf"><?php echo "Di tambah pada : ".$mrk["tanggal"]; ?></p>
             </div>
            
     

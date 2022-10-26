@@ -1,6 +1,7 @@
 <?php
 
     require "koneksi.php";
+    date_default_timezone_set("Asia/Makassar");
     if(isset($_POST["input"]))
     {
         $gambar = $_FILES["gambar"]["name"];
@@ -10,9 +11,12 @@
         $harga = $_POST["harga"];
         $alamat = $_POST["alamat"];
 
+        $d = strtotime("now");
+        $tgl = date("Y-m-d h:i:sa", $d);
+
         move_uploaded_file($tmp, "img/".$gambar);    
     
-        $sql = "INSERT INTO merek (id, gambar, nama_produk, harga, alamat ) VALUES ('', '$gambar', '$nama_produk', '$harga', '$alamat');";
+        $sql = "INSERT INTO merek (id, gambar, nama_produk, harga, alamat , tanggal ) VALUES ('', '$gambar', '$nama_produk', '$harga', '$alamat', '$tgl');";
         $result = mysqli_query($conn, $sql);
 
         if($result)
